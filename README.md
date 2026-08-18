@@ -12,7 +12,6 @@
 
 [![][github-forks-shield]][github-forks-link]
 [![][github-stars-shield]][github-stars-link]
-[![][github-issues-shield]][github-issues-link]
 [![][agent-skills-shield]][agent-skills-link]
 
 GroundRail 面向 Sol、Claude Opus 4.8、GLM-5.3 等已经内化了大量编码流程的强基模。它不再从头教授如何读代码、拆任务、写测试或实现功能，也不试图用一份巨细无遗的操作手册代替模型判断。强基模真正需要的，通常不是更多“该怎么写代码”的细则，而是在几个容易脱轨的位置保留清晰、可检查的行为边界。
