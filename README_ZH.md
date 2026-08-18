@@ -27,50 +27,34 @@
   <sub>Codex · Claude Code · Agent Skills compatible hosts</sub>
 </p>
 
-## ⚡ 快速安装
-
-```bash
-npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code -g --copy -y
-```
-
-这条命令会同时安装到 Codex 和 Claude Code。单宿主、项目级及原生目录安装见[完整安装说明](#installation)。
-
 ## 🚧 为什么是 GroundRail？
 
-GroundRail 面向 Sol、Claude Opus 4.8、GLM-5.3 等已经内化了大量编码流程的强基模。它不再从头教授如何读代码、拆任务、写测试或实现功能，也不试图用一份巨细无遗的操作手册代替模型判断。强基模真正需要的，通常不是更多“该怎么写代码”的细则，而是在几个容易脱轨的位置保留清晰、可检查的行为边界。
+> 强编码模型通常不再需要一份“如何写代码”的教程。它们需要的，是一块确认什么为真的可靠地基，以及几根约束“何时继续、谁来决定、哪些旧上下文不该带入下一次判断”的轻量护轨。
 
-**Ground** 是可定位、可复现的事实地基；**Rail** 是约束阶段顺序、决策归属和审查边界的最少护轨。轨道规定“什么时候可以继续、什么决定必须留给用户”，不规定每一行代码应当怎样写。模型仍然负责理解仓库、选择实现、复用现有设计和处理普通工程细节。
+GroundRail 面向 Sol、Claude Opus 4.8、GLM-5.3 等已经内化了大量编码流程的强基模。它不重新教授仓库阅读、任务拆解、测试或实现，也不用一份巨细无遗的操作手册代替模型判断。
+
+**Ground** 是支撑决策的可追溯证据。**Rail** 是围绕阶段顺序、决策归属、审查和上下文的最少约束。在这些边界之间，仓库理解、实现设计、代码复用和普通工程细节仍由模型决定。
 
 ### 🛤️ 五种常见脱轨
 
 GroundRail 不限制模型如何写代码。它只在证据、假设、决策权、审查和上下文开始偏离时，把任务拉回轨道。
 
-> #### `01` 局部证据，过早方案
->
-> **失控点** — 只读了局部代码，Agent 就开始解释根因或设计方案。<br>
-> **护轨** — 先建立与风险匹配的最小充分 `Fact`，让关键结论能追溯到源码、配置、运行结果或外部契约。
+> **`01` · 局部证据 → 过早方案**<br>
+> Agent 只读了局部代码，就开始解释根因或设计方案。**GroundRail：**先建立与风险匹配的最小充分 `Fact`，让关键结论能追溯到源码、配置、运行结果或外部契约。
 
-> #### `02` 假设漂移，层层固化
->
-> **失控点** — 调查中的猜测进入 Plan，Plan 中的假设又在 Execute 时变成“事实”。<br>
-> **护轨** — 分开观察、证据支持的结论与行动；未知始终标记为证据缺口，不能被流程悄悄洗白。
+> **`02` · 猜测 → 被继承的“事实”**<br>
+> 调查中的猜测进入 Plan，又在 Execute 时逐渐固化。**GroundRail：**分开观察、证据支持的结论与行动，让未知始终作为可见的证据缺口。
 
-> #### `03` 决策越界，替用户取舍
->
-> **失控点** — Agent 自行决定产品行为、范围、成本、安全或不可逆风险。<br>
-> **护轨** — 把关键取舍留给用户；模型只依据事实和仓库惯例，自主完成普通实现细节。
+> **`03` · 工程判断 → 产品决策**<br>
+> Agent 自行决定产品行为、范围、成本、安全或不可逆取舍。**GroundRail：**把关键取舍留给用户，普通实现选择继续交给模型。
 
-> #### `04` 审查失焦，关键遗漏
->
-> **失控点** — Review 漏掉真正影响交付的问题，却反复纠缠风格和低价值建议。<br>
-> **护轨** — 只审查稳定工件，在干净上下文中沿四个轴检查，并用 P0/P1/P2 控制优先级与噪声。
+> **`04` · 更多审查 → 更少信号**<br>
+> Review 漏掉真正影响交付的问题，却反复纠缠风格和低价值建议。**GroundRail：**在干净上下文中审查稳定工件，沿四个轴检查，并用 P0/P1/P2 限制优先级与噪声。
 
-> #### `05` 上下文淤积，判断受污染
->
-> **失控点** — 长任务把探索过程和实现细节持续堆在主对话中，让后续判断被旧上下文牵引。<br>
-> **护轨** — 用稳定工件、结果式委派和安全 Handoff 外置状态，把主 Agent 的上下文留给连续判断、冲突消解与最终综合。
+> **`05` · 更多上下文 → 更差判断**<br>
+> 长任务把探索过程和实现细节堆在主对话中，直到旧上下文牵引后续判断。**GroundRail：**用稳定工件、结果式委派和安全 Handoff 外置状态。
 
-项目名和 Skill 名均为 **GroundRail**。涉及仓库调查、计划、实施、代码审查或任务交接的请求可以自动路由到该 Skill；Codex 可用 `$groundrail`、Claude Code 可用 `/groundrail` 显式调用：**用事实让 Agent 落地，用最少护轨让强基模继续发挥。**
+GroundRail 只在这些失效边界上介入。仓库调查、计划、实施、代码审查或任务交接可以自动路由到该 Skill；Codex 可用 `$groundrail`、Claude Code 可用 `/groundrail` 显式调用。**用事实让 Agent 落地，用最少护轨让强基模继续发挥。**
 
 ## 🧭 工作方式
 
@@ -102,17 +86,17 @@ Fact → Review → Plan → Review → user approval → Execute → Review
 
 主 Agent 保留判断和最终综合，边界清楚的重活可以委派。跨会话 Handoff 引用已有计划、diff、commit 和研究工件，而不重复其内容，让下一段上下文继续用于决策，而不是承载旧实现历史。
 
-## 🪶 GroundRail 刻意留给模型的空间
-
-GroundRail 不是一套覆盖整个软件开发生命周期的重型方法论。它不会默认强制 brainstorming、逐任务子代理、2–5 分钟颗粒度拆解、严格 TDD、worktree、频繁审查或固定分支收尾；这些能力可以由模型、仓库规范或专项 Skill 按任务需要调用。
-
-它也不会把普通实现选择不断抛回用户。只有会改变产品行为、范围、验收、成本、安全或不可逆状态的选择才需要用户决定；其余部分应让强基模依据证据和仓库惯例自主完成。GroundRail 约束的是越权与失真，不是能力本身。
-
 <a id="installation"></a>
 
 ## ⚙️ 安装
 
 GroundRail 使用开放的 Agent Skills 结构，同一份 `groundrail/SKILL.md` 可同时供 Codex 和 Claude Code 使用。它只采用标准 `name`、`description` 和 Markdown 指令；Codex 专属的可选 UI 元数据单独放在 `groundrail/agents/openai.yaml`，不会影响 Claude Code。
+
+### 快速安装
+
+```bash
+npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code -g --copy -y
+```
 
 ### 推荐：同时安装到 Codex 和 Claude Code
 
@@ -216,53 +200,32 @@ GroundRail 最适合“能力已经足够，边界仍会漂移”的场景：
 
 它不替代专项的安全、性能、测试、UI 或发布 Skill，也不压制模型调用这些能力。简单、低风险且事实明确的任务无需为了“遵守流程”而生成文档；风险很高或仓库另有严格规范时，则应叠加相应专项约束。
 
-## ⚖️ GroundRail 与 Superpowers
+## ⚖️ 为什么 GroundRail 比 Superpowers 更适合现在？
 
-[Superpowers](https://github.com/obra/superpowers) 是包含 brainstorming、worktree、计划、TDD、子代理开发、代码审查和分支交付的完整方法论。它适合希望 Agent 遵循一套细致开发方法的场景。GroundRail 的出发点不同：假定强基模已经掌握大部分编码流程，只在证据、阶段、授权、审查和上下文这五类边界上铺设护轨。
+[Superpowers](https://github.com/obra/superpowers) 把自己定义为一套完整的软件开发方法论。它当前的基础流程默认包含 brainstorming、worktree、2–5 分钟颗粒度的实施任务、严格的 red-green-refactor TDD、逐任务子代理、重复审查和分支收尾。当流程需要弥补 Agent 尚不能自主建立的工程纪律时，这很有价值。
 
-### 适合选择 GroundRail 的情况
+GroundRail 面向的是另一个能力阶段。强模型已经能够调查陌生仓库、追踪行为、选择实现、复用现有抽象、编写聚焦测试并修正方案。把这些能力全部重新写成常驻的逐步指令，会消耗上下文，也可能把有价值的判断变成对流程的机械遵循。
 
-- 模型已经具备强编码能力，普通工程判断应继续由模型完成；
-- 主要风险是证据缺口、决策越界、审查噪声和上下文污染；
-- 计划应描述最小连贯改动，而不是脚本化每个实现步骤；
-- 测试和委派强度需要随任务真实风险变化。
+### 瓶颈已经变了
 
-### 适合选择 Superpowers 的情况
+对强模型而言，反复失败的地方已经不再主要是“不知道某种编码技巧”，而是基于局部证据行动、让假设在阶段间固化、跨过用户的决策边界、审查错误的对象，或把过多旧上下文带入下一次判断。GroundRail 把约束集中在这些位置。
 
-- 希望采用完整、强约束的开发方法论；
-- brainstorming、细粒度计划、严格 TDD、worktree 和频繁子代理审查应成为默认；
-- 希望流程本身指导大部分实现行为。
+### 计划应保留意图，而不是脚本化每个动作
 
-两者可以互相借鉴，但优化的是不同控制面：Superpowers 规定更多开发方法，GroundRail 保护强模型自主判断周围的关键边界。Superpowers 的具体行为以其最新上游文档为准。
+Superpowers 刻意把计划写到低上下文的初级工程师也能照做。GroundRail 只写下能保留目标、证据、复用点、边界和验证的最小连贯 Plan，然后让模型依据实时仓库自主决定普通实现细节。
 
-## 📦 仓库结构
+### 约束应跟随风险缩放
 
-发布时只需以下运行与说明文件；`upstream/` 和设计笔记属于开发参考，不是 Skill 运行内容。
+小而明确的改动可以内联 Fact 和 Plan；高风险或长时任务才需要稳定工件、独立 Review、明确授权和 Handoff。TDD、worktree、专项审查或子代理仍然可以在任务需要时调用；它们是能力，不是普遍仪式。
 
-```text
-groundrail/
-├── README.md
-├── README_ZH.md
-├── groundrail.svg
-└── groundrail/
-    ├── SKILL.md
-    └── agents/
-        └── openai.yaml
-```
+### 更少流程，更强控制
 
-## 🧠 设计参考
+Superpowers 控制更多“开发应如何进行”；GroundRail 控制“什么可以成为事实、何时可以进入下一阶段、谁拥有关键决策、哪些上下文应被保留”。对当下最强的编码模型，这通常是更好的交换：更少的常驻指令，更多的能力空间，同时对那些“仅靠能力仍无法消除”的失败保留更严格的保护。
 
-- [Agent Skills standard](https://agentskills.io)
-- [Anthropic Skills](https://github.com/anthropics/skills)
-- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)
-- [Hugging Face Skills](https://github.com/huggingface/skills)
-- [Thoughtworks: Agent instruction bloat](https://www.thoughtworks.com/radar/techniques/agent-instruction-bloat)
-- [SWE-Skills-Bench](https://arxiv.org/abs/2603.15401)
+当团队需要一套强制的端到端开发方法论时，Superpowers 仍然是很强的选择。当模型已经具备能力，而目标是约束漂移而不是约束智能时，GroundRail 更适合。
 
 ## 🤝 参与项目
 
 发现事实覆盖缺口、错误门禁或无价值的审查循环，请提交 [Issue](https://github.com/PeterLeeXX/GroundRail/issues)。改进建议最好附带可复现任务或前后行为，不需要为了让流程看起来更完整而增加常驻规则。
 
-## 📄 许可证
-
-GroundRail 使用 [MIT License](./LICENSE)。
+GroundRail 遵循 [Agent Skills standard](https://agentskills.io)，并使用 [MIT License](./LICENSE)。

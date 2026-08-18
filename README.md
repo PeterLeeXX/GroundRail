@@ -27,50 +27,34 @@
   <sub>Codex · Claude Code · Agent Skills compatible hosts</sub>
 </p>
 
-## ⚡ Quick install
-
-```bash
-npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code -g --copy -y
-```
-
-This installs GroundRail for Codex and Claude Code. See the [full installation guide](#installation) for single-host, project-level, and native-directory options.
-
 ## 🚧 Why GroundRail?
 
-GroundRail is designed for strong foundation models such as Sol, Claude Opus 4.8, and GLM-5.3 that have already internalized much of the coding process. It does not reteach them how to read code, break down work, write tests, or implement a feature, and it does not try to replace model judgment with an exhaustive operating manual. What these models usually need is a small set of explicit, inspectable boundaries at the points where capable work still tends to derail.
+> Strong coding models rarely need another tutorial on how to code. They need a reliable ground for what is true, plus lightweight rails around when to proceed, what they may decide, and how stale context is kept out of the next judgment.
 
-**Ground** is a traceable, reproducible evidence base. **Rail** is the minimum constraint on stage order, decision ownership, and review boundaries. The rails define when work may proceed and which choices remain with the user; they do not prescribe how every line of code must be written. The model still owns repository comprehension, implementation choices, reuse, and routine engineering detail.
+GroundRail is built for strong foundation models such as Sol, Claude Opus 4.8, and GLM-5.3 that have already internalized much of the coding process. It does not reteach repository reading, task decomposition, testing, or implementation, and it does not replace model judgment with an exhaustive operating manual.
+
+**Ground** is the traceable evidence beneath a decision. **Rail** is the minimum constraint around stage order, decision ownership, review, and context. Everything between those boundaries—repository comprehension, implementation design, reuse, and routine engineering detail—stays with the model.
 
 ### 🛤️ Five common derailments
 
 GroundRail does not constrain how a model writes code. It brings the task back on track only when evidence, assumptions, decision ownership, review, or context begins to drift.
 
-> #### `01` Partial evidence, premature solution
->
-> **Failure mode** — The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution.<br>
-> **Rail** — Establish the minimum sufficient `Fact` for the risk first, keeping every important conclusion traceable to code, configuration, runtime results, or external contracts.
+> **`01` · Partial evidence → premature solution**<br>
+> The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution. **GroundRail:** establish the minimum sufficient `Fact` for the risk and keep important conclusions traceable to code, configuration, runtime results, or external contracts.
 
-> #### `02` Assumptions drift and harden
->
-> **Failure mode** — A guess from investigation enters the Plan, then becomes a “fact” during Execute.<br>
-> **Rail** — Keep observations, evidence-backed conclusions, and actions separate. Unknowns remain evidence gaps instead of being silently laundered by the workflow.
+> **`02` · Assumption → inherited “fact”**<br>
+> A guess from investigation enters the Plan, then hardens during Execute. **GroundRail:** keep observations, evidence-backed conclusions, and actions separate; unknowns remain visible evidence gaps.
 
-> #### `03` The agent crosses the decision boundary
->
-> **Failure mode** — The agent chooses product behavior, scope, cost, safety, or an irreversible risk tradeoff on the user's behalf.<br>
-> **Rail** — Leave consequential tradeoffs to the user while the model autonomously handles routine implementation details from evidence and repository conventions.
+> **`03` · Engineering judgment → product decision**<br>
+> The agent chooses product behavior, scope, cost, safety, or an irreversible tradeoff for the user. **GroundRail:** reserve consequential choices for the user while leaving routine implementation decisions to the model.
 
-> #### `04` Review loses focus
->
-> **Failure mode** — Review misses issues that threaten delivery while repeatedly debating style or low-value suggestions.<br>
-> **Rail** — Review only stable artifacts, in a clean context, across four axes; use P0/P1/P2 to control priority and noise.
+> **`04` · More review → less signal**<br>
+> Review misses delivery-critical issues while circling style and low-value suggestions. **GroundRail:** review stable artifacts in a clean context across four axes, with P0/P1/P2 bounding priority and noise.
 
-> #### `05` Context accumulates and distorts judgment
->
-> **Failure mode** — A long task keeps exploration history and implementation detail in the main conversation until stale context pulls later decisions off course.<br>
-> **Rail** — Externalize state through stable artifacts, result-oriented delegation, and safe Handoff, preserving the main agent's context for continuous judgment, conflict resolution, and final synthesis.
+> **`05` · More context → worse judgment**<br>
+> A long task fills the main conversation with exploration history and implementation detail until stale context pulls later decisions off course. **GroundRail:** externalize state through stable artifacts, result-oriented delegation, and safe Handoff.
 
-The project and Skill are both named **GroundRail**. Repository investigation, planning, implementation, code-review, and handoff requests can route to it automatically. Invoke it explicitly with `$groundrail` in Codex or `/groundrail` in Claude Code. **Ground the agent in facts, then use the fewest rails that let a strong model keep exercising its ability.**
+GroundRail steps in only at these failure boundaries. Repository investigation, planning, implementation, code-review, and handoff requests can route to the Skill automatically; invoke it explicitly with `$groundrail` in Codex or `/groundrail` in Claude Code. **Ground the agent in facts, then use the fewest rails that let a strong model keep exercising its ability.**
 
 ## 🧭 How it works
 
@@ -102,17 +86,17 @@ A clean-context Reviewer checks Contract / Intent, Correctness / Safety, Reposit
 
 The main agent retains judgment and synthesis while bounded heavy work can be delegated. Cross-session Handoff references existing plans, diffs, commits, and research instead of duplicating them, preserving the next context for decisions rather than stale implementation history.
 
-## 🪶 What GroundRail leaves to the model
-
-GroundRail is not a heavyweight methodology for the entire software-development lifecycle. It does not default to mandatory brainstorming, one subagent per task, 2–5 minute task decomposition, strict TDD, worktrees, frequent review, or a fixed branch-finishing process. The model, repository rules, or specialist Skills can add those practices when the task calls for them.
-
-Nor does it bounce ordinary implementation choices back to the user. Only decisions that alter product behavior, scope, acceptance, cost, safety, or irreversible state require user input. The model should resolve everything else from evidence and repository conventions. GroundRail constrains authority drift and evidence distortion, not capability.
-
 <a id="installation"></a>
 
 ## ⚙️ Installation
 
 GroundRail follows the open Agent Skills structure, so the same `groundrail/SKILL.md` works in Codex and Claude Code. It uses only the standard `name`, `description`, and Markdown instructions. Optional Codex UI metadata lives separately in `groundrail/agents/openai.yaml` and does not affect Claude Code.
+
+### Quick install
+
+```bash
+npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code -g --copy -y
+```
 
 ### Recommended: install for Codex and Claude Code
 
@@ -216,53 +200,32 @@ GroundRail is most useful where capability is already strong but boundaries stil
 
 It does not replace or suppress specialist security, performance, testing, UI, or release Skills. Small, low-risk tasks with clear facts do not need documents created solely for process compliance; high-risk work or stricter repository rules can layer on the relevant specialist constraints.
 
-## ⚖️ GroundRail vs Superpowers
+## ⚖️ Why GroundRail fits today's strong models better than Superpowers
 
-[Superpowers](https://github.com/obra/superpowers) is a complete development methodology covering brainstorming, worktrees, planning, TDD, subagent-driven development, code review, and branch delivery. It fits teams that want an agent to follow a detailed development method. GroundRail starts from a different assumption: the model already knows most of the coding workflow and needs rails primarily around evidence, stages, authorization, review, and context.
+[Superpowers](https://github.com/obra/superpowers) describes itself as a complete software-development methodology. Its current basic workflow makes brainstorming, worktrees, 2–5 minute implementation tasks, strict red-green-refactor TDD, task-level subagents, repeated review, and branch finishing part of the default method. That is valuable when the process must compensate for an agent that cannot be trusted to supply its own engineering discipline.
 
-### Choose GroundRail when
+GroundRail is built for a different capability frontier. Strong models can already inspect unfamiliar repositories, trace behavior, choose an implementation, reuse existing abstractions, write focused tests, and revise their approach. Re-encoding all of that as permanent step-by-step instruction consumes context and can turn useful judgment into workflow compliance.
 
-- the model is already a strong coder and should retain routine engineering judgment;
-- evidence gaps, authority drift, review noise, and context pollution are the main risks;
-- plans should describe coherent changes rather than script every implementation step;
-- testing and delegation should scale with the task's actual risk.
+### The bottleneck has moved
 
-### Choose Superpowers when
+For strong models, the recurring failure is less often *not knowing a coding technique*. It is acting on partial evidence, allowing assumptions to harden between stages, crossing a user-owned decision boundary, reviewing the wrong things, or carrying too much stale context forward. GroundRail concentrates its constraints exactly there.
 
-- you want a complete, prescriptive development methodology;
-- brainstorming, fine-grained plans, strict TDD, worktrees, and frequent subagent review should be defaults;
-- the process itself should guide most implementation behavior.
+### Plans should preserve intent, not script keystrokes
 
-The two can inform each other, but they optimize for different control surfaces: Superpowers specifies more of the development method; GroundRail protects the boundaries around a capable model's judgment. Refer to the latest upstream documentation for current Superpowers behavior.
+Superpowers deliberately writes plans detailed enough for a low-context junior engineer to follow. GroundRail writes the smallest coherent Plan that preserves goals, evidence, reuse points, boundaries, and verification—then lets the model decide routine implementation details from the live repository.
 
-## 📦 Repository layout
+### Constraint should scale with risk
 
-Only the following runtime and explanatory files are needed for publication. `upstream/` and design notes are development references, not Skill runtime content.
+A small, well-understood change can keep Fact and Plan inline. A risky or long-running task earns stable artifacts, independent Review, explicit authorization, and Handoff. TDD, worktrees, specialist review, or subagents remain available when the task needs them; they are capabilities, not universal ceremony.
 
-```text
-groundrail/
-├── README.md
-├── README_ZH.md
-├── groundrail.svg
-└── groundrail/
-    ├── SKILL.md
-    └── agents/
-        └── openai.yaml
-```
+### Less process, stronger control
 
-## 🧠 Design references
+Superpowers controls more of *how development is performed*. GroundRail controls *what may become fact, when work may advance, who owns consequential decisions, and what context survives*. For today's strongest coding models, that is usually the better trade: fewer standing instructions, more room for model capability, and tighter protection around the failures that capability alone does not remove.
 
-- [Agent Skills standard](https://agentskills.io)
-- [Anthropic Skills](https://github.com/anthropics/skills)
-- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)
-- [Hugging Face Skills](https://github.com/huggingface/skills)
-- [Thoughtworks: Agent instruction bloat](https://www.thoughtworks.com/radar/techniques/agent-instruction-bloat)
-- [SWE-Skills-Bench](https://arxiv.org/abs/2603.15401)
+Superpowers remains a strong choice when a team wants one mandatory, end-to-end development methodology. GroundRail is the better fit when the model is already capable and the goal is to constrain drift without constraining intelligence.
 
 ## 🤝 Contributing
 
 Open an [Issue](https://github.com/PeterLeeXX/GroundRail/issues) for evidence-coverage gaps, incorrect gates, or review loops that add no value. Useful proposals include a reproducible task or clear before/after behavior. New standing rules should solve an observed failure rather than make the workflow look more complete.
 
-## 📄 License
-
-GroundRail is available under the [MIT License](./LICENSE).
+GroundRail follows the [Agent Skills standard](https://agentskills.io) and is available under the [MIT License](./LICENSE).
