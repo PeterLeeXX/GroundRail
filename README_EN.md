@@ -21,33 +21,32 @@ GroundRail is designed for strong foundation models such as Sol, Claude Opus 4.8
 
 ### 🛤️ Five common derailments
 
-> [!IMPORTANT]
-> GroundRail does not constrain how a model writes code. It brings the task back on track only when evidence, assumptions, decision ownership, review, or context begins to drift.
+GroundRail does not constrain how a model writes code. It brings the task back on track only when evidence, assumptions, decision ownership, review, or context begins to drift.
 
-#### `01` Partial evidence, premature solution
+> #### `01` Partial evidence, premature solution
+>
+> **Failure mode** — The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution.<br>
+> **Rail** — Establish the minimum sufficient `Fact` for the risk first, keeping every important conclusion traceable to code, configuration, runtime results, or external contracts.
 
-**Failure mode** — The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution.<br>
-**Rail** — Establish the minimum sufficient `Fact` for the risk first, keeping every important conclusion traceable to code, configuration, runtime results, or external contracts.
+> #### `02` Assumptions drift and harden
+>
+> **Failure mode** — A guess from investigation enters the Plan, then becomes a “fact” during Execute.<br>
+> **Rail** — Keep observations, evidence-backed conclusions, and actions separate. Unknowns remain evidence gaps instead of being silently laundered by the workflow.
 
-#### `02` Assumptions drift and harden
+> #### `03` The agent crosses the decision boundary
+>
+> **Failure mode** — The agent chooses product behavior, scope, cost, safety, or an irreversible risk tradeoff on the user's behalf.<br>
+> **Rail** — Leave consequential tradeoffs to the user while the model autonomously handles routine implementation details from evidence and repository conventions.
 
-**Failure mode** — A guess from investigation enters the Plan, then becomes a “fact” during Execute.<br>
-**Rail** — Keep observations, evidence-backed conclusions, and actions separate. Unknowns remain evidence gaps instead of being silently laundered by the workflow.
+> #### `04` Review loses focus
+>
+> **Failure mode** — Review misses issues that threaten delivery while repeatedly debating style or low-value suggestions.<br>
+> **Rail** — Review only stable artifacts, in a clean context, across four axes; use P0/P1/P2 to control priority and noise.
 
-#### `03` The agent crosses the decision boundary
-
-**Failure mode** — The agent chooses product behavior, scope, cost, safety, or an irreversible risk tradeoff on the user's behalf.<br>
-**Rail** — Leave consequential tradeoffs to the user while the model autonomously handles routine implementation details from evidence and repository conventions.
-
-#### `04` Review loses focus
-
-**Failure mode** — Review misses issues that threaten delivery while repeatedly debating style or low-value suggestions.<br>
-**Rail** — Review only stable artifacts, in a clean context, across four axes; use P0/P1/P2 to control priority and noise.
-
-#### `05` Context accumulates and distorts judgment
-
-**Failure mode** — A long task keeps exploration history and implementation detail in the main conversation until stale context pulls later decisions off course.<br>
-**Rail** — Externalize state through stable artifacts, result-oriented delegation, and safe Handoff, preserving the main agent's context for continuous judgment, conflict resolution, and final synthesis.
+> #### `05` Context accumulates and distorts judgment
+>
+> **Failure mode** — A long task keeps exploration history and implementation detail in the main conversation until stale context pulls later decisions off course.<br>
+> **Rail** — Externalize state through stable artifacts, result-oriented delegation, and safe Handoff, preserving the main agent's context for continuous judgment, conflict resolution, and final synthesis.
 
 The core path is `Fact → Plan → Execute`, with Review crossing it at stable checkpoints. These are logical gates, not document rituals: a low-risk task may need only a few inline facts and plan notes, while complex, long-running, multi-agent, or cross-session work may persist artifacts.
 
