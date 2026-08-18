@@ -1,0 +1,6 @@
+interface:
+  display_name: "GroundRail"
+  short_description: "自动路由调查、计划、实施、审查与交接的证据优先工作流"
+  default_prompt: "使用 $groundrail 按 Fact → Plan → Execute 处理这个仓库需求，以最小连贯改动实施并在稳定检查点独立复核。"
+policy:
+  allow_implicit_invocation: true
