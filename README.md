@@ -35,24 +35,34 @@ GroundRail is built for strong foundation models such as Sol, Claude Opus 4.8, a
 
 **Ground** is the traceable evidence beneath a decision. **Rail** is the minimum constraint around stage order, decision ownership, review, and context. Everything between those boundaries—repository comprehension, implementation design, reuse, and routine engineering detail—stays with the model.
 
-### 🛤️ Five common derailments
+### ⭕ Five common derailments
 
 GroundRail does not constrain how a model writes code. It brings the task back on track only when evidence, assumptions, decision ownership, review, or context begins to drift.
 
 > **`01` · Partial evidence → premature solution**<br>
-> The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution. **GroundRail:** establish the minimum sufficient `Fact` for the risk and keep important conclusions traceable to code, configuration, runtime results, or external contracts.
+> The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution.
+> 
+> **GroundRail:** establish the minimum sufficient `Fact` for the risk and keep important conclusions traceable to code, configuration, runtime results, or external contracts.
 
 > **`02` · Assumption → inherited “fact”**<br>
-> A guess from investigation enters the Plan, then hardens during Execute. **GroundRail:** keep observations, evidence-backed conclusions, and actions separate; unknowns remain visible evidence gaps.
+> A guess from investigation enters the Plan, then hardens during Execute.
+> 
+> **GroundRail:** keep observations, evidence-backed conclusions, and actions separate; unknowns remain visible evidence gaps.
 
 > **`03` · Engineering judgment → product decision**<br>
-> The agent chooses product behavior, scope, cost, safety, or an irreversible tradeoff for the user. **GroundRail:** reserve consequential choices for the user while leaving routine implementation decisions to the model.
+> The agent chooses product behavior, scope, cost, safety, or an irreversible tradeoff for the user.
+> 
+> **GroundRail:** reserve consequential choices for the user while leaving routine implementation decisions to the model.
 
 > **`04` · More review → less signal**<br>
-> Review misses delivery-critical issues while circling style and low-value suggestions. **GroundRail:** review stable artifacts in a clean context across four axes, with P0/P1/P2 bounding priority and noise.
+> Review misses delivery-critical issues while circling style and low-value suggestions.
+> 
+> **GroundRail:** review stable artifacts in a clean context across four axes, with P0/P1/P2 bounding priority and noise.
 
 > **`05` · More context → worse judgment**<br>
-> A long task fills the main conversation with exploration history and implementation detail until stale context pulls later decisions off course. **GroundRail:** externalize state through stable artifacts, result-oriented delegation, and safe Handoff.
+> A long task fills the main conversation with exploration history and implementation detail until stale context pulls later decisions off course.
+> 
+> **GroundRail:** externalize state through stable artifacts, result-oriented delegation, and safe Handoff.
 
 GroundRail steps in only at these failure boundaries. Repository investigation, planning, implementation, code-review, and handoff requests can route to the Skill automatically; invoke it explicitly with `$groundrail` in Codex or `/groundrail` in Claude Code. **Ground the agent in facts, then use the fewest rails that let a strong model keep exercising its ability.**
 
