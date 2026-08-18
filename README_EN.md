@@ -4,16 +4,38 @@
 
 <h1 align="center">GroundRail</h1>
 
-<p align="center">An evidence ground and lightweight rails for strong coding models.</p>
+<p align="center">
+  <strong>An evidence ground and lightweight rails for strong coding models.</strong>
+  <br />
+  <sub>Constrain evidence, stages, and decision boundaries—not engineering judgment.</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/PeterLeeXX/GroundRail/tags"><img alt="Version" src="https://img.shields.io/github/v/tag/PeterLeeXX/GroundRail?label=Version&sort=semver&style=flat-square&color=2D565E" /></a>
+  <a href="https://github.com/PeterLeeXX/GroundRail/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E" /></a>
+  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/PeterLeeXX/GroundRail?style=flat-square&label=License&color=D6A756" /></a>
+  <a href="https://agentskills.io"><img alt="Agent Skills Compatible" src="https://img.shields.io/badge/Agent%20Skills-compatible-2D565E?style=flat-square" /></a>
+</p>
 
 <p align="center">
   <a href="./README.md">简体中文</a> · <a href="./README_EN.md">English</a>
 </p>
 
-[![][github-forks-shield]][github-forks-link]
-[![][github-stars-shield]][github-stars-link]
-[![][github-issues-shield]][github-issues-link]
-[![][agent-skills-shield]][agent-skills-link]
+<p align="center">
+  <code>Fact → Plan → Execute</code> · stable-artifact Review · safe Handoff
+  <br />
+  <sub>Codex · Claude Code · Agent Skills compatible hosts</sub>
+</p>
+
+## ⚡ Quick install
+
+```bash
+npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code -g --copy -y
+```
+
+This installs GroundRail for Codex and Claude Code. See the [full installation guide](#installation) for single-host, project-level, and native-directory options.
+
+## Why GroundRail?
 
 GroundRail is designed for strong foundation models such as Sol, Claude Opus 4.8, and GLM-5.3 that have already internalized much of the coding process. It does not reteach them how to read code, break down work, write tests, or implement a feature, and it does not try to replace model judgment with an exhaustive operating manual. What these models usually need is a small set of explicit, inspectable boundaries at the points where capable work still tends to derail.
 
@@ -253,12 +275,3 @@ groundrail/
 ## Contributing
 
 Open an [Issue][github-issues-link] for evidence-coverage gaps, incorrect gates, or review loops that add no value. Useful proposals include a reproducible task or clear before/after behavior. New standing rules should solve an observed failure rather than make the workflow look more complete.
-
-[github-forks-shield]: https://img.shields.io/github/forks/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E
-[github-forks-link]: https://github.com/PeterLeeXX/GroundRail/network/members
-[github-stars-shield]: https://img.shields.io/github/stars/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E
-[github-stars-link]: https://github.com/PeterLeeXX/GroundRail/stargazers
-[github-issues-shield]: https://img.shields.io/github/issues/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E
-[github-issues-link]: https://github.com/PeterLeeXX/GroundRail/issues
-[agent-skills-shield]: https://img.shields.io/badge/Agent%20Skills-compatible-2D565E?style=flat-square
-[agent-skills-link]: https://agentskills.io

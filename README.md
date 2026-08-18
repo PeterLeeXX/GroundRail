@@ -4,15 +4,38 @@
 
 <h1 align="center">GroundRail</h1>
 
-<p align="center">给强编码基模的证据地基与轻量护轨。</p>
+<p align="center">
+  <strong>给强编码基模的证据地基与轻量护轨。</strong>
+  <br />
+  <sub>约束事实、阶段与决策边界，不接管模型的工程判断。</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/PeterLeeXX/GroundRail/tags"><img alt="Version" src="https://img.shields.io/github/v/tag/PeterLeeXX/GroundRail?label=Version&sort=semver&style=flat-square&color=2D565E" /></a>
+  <a href="https://github.com/PeterLeeXX/GroundRail/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E" /></a>
+  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/PeterLeeXX/GroundRail?style=flat-square&label=License&color=D6A756" /></a>
+  <a href="https://agentskills.io"><img alt="Agent Skills Compatible" src="https://img.shields.io/badge/Agent%20Skills-compatible-2D565E?style=flat-square" /></a>
+</p>
 
 <p align="center">
   <a href="./README.md">简体中文</a> · <a href="./README_EN.md">English</a>
 </p>
 
-[![][github-forks-shield]][github-forks-link]
-[![][github-stars-shield]][github-stars-link]
-[![][agent-skills-shield]][agent-skills-link]
+<p align="center">
+  <code>Fact → Plan → Execute</code> · 稳定工件 Review · 安全 Handoff
+  <br />
+  <sub>Codex · Claude Code · Agent Skills compatible hosts</sub>
+</p>
+
+## ⚡ 快速安装
+
+```bash
+npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code -g --copy -y
+```
+
+这条命令会同时安装到 Codex 和 Claude Code。单宿主、项目级及原生目录安装见[完整安装说明](#安装)。
+
+## 为什么是 GroundRail？
 
 GroundRail 面向 Sol、Claude Opus 4.8、GLM-5.3 等已经内化了大量编码流程的强基模。它不再从头教授如何读代码、拆任务、写测试或实现功能，也不试图用一份巨细无遗的操作手册代替模型判断。强基模真正需要的，通常不是更多“该怎么写代码”的细则，而是在几个容易脱轨的位置保留清晰、可检查的行为边界。
 
@@ -252,12 +275,3 @@ groundrail/
 ## 参与项目
 
 发现事实覆盖缺口、错误门禁或无价值的审查循环，请提交 [Issue][github-issues-link]。改进建议最好附带可复现任务或前后行为，不需要为了让流程看起来更完整而增加常驻规则。
-
-[github-forks-shield]: https://img.shields.io/github/forks/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E
-[github-forks-link]: https://github.com/PeterLeeXX/GroundRail/network/members
-[github-stars-shield]: https://img.shields.io/github/stars/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E
-[github-stars-link]: https://github.com/PeterLeeXX/GroundRail/stargazers
-[github-issues-shield]: https://img.shields.io/github/issues/PeterLeeXX/GroundRail?style=flat-square&logo=github&color=2D565E
-[github-issues-link]: https://github.com/PeterLeeXX/GroundRail/issues
-[agent-skills-shield]: https://img.shields.io/badge/Agent%20Skills-compatible-2D565E?style=flat-square
-[agent-skills-link]: https://agentskills.io
