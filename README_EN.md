@@ -21,15 +21,33 @@ GroundRail is designed for strong foundation models such as Sol, Claude Opus 4.8
 
 ### 🛤️ Five common derailments
 
-**🔎 Proposing a solution after reading only part of the relevant code.** GroundRail first establishes the minimum sufficient `Fact` for the risk, keeping important claims traceable to code, configuration, runtime results, or external contracts.
+> [!IMPORTANT]
+> GroundRail does not constrain how a model writes code. It brings the task back on track only when evidence, assumptions, decision ownership, review, or context begins to drift.
 
-**🧪 Letting guesses harden into “facts” across stages.** Observations from investigation, evidence-backed conclusions, and planned actions stay separate. An unknown remains an evidence gap instead of being silently laundered from Fact into Plan and then Execute.
+#### `01` Partial evidence, premature solution
 
-**🧭 Making product or risk tradeoffs for the user.** The user retains requirements, product behavior, scope, cost, safety, and irreversible choices. The model owns routine implementation details based on evidence and repository conventions.
+**Failure mode** — The agent reads only part of the relevant code, then starts explaining the root cause or designing a solution.<br>
+**Rail** — Establish the minimum sufficient `Fact` for the risk first, keeping every important conclusion traceable to code, configuration, runtime results, or external contracts.
 
-**🔍 Missing critical review findings or cycling on low-value suggestions.** Review targets stable artifacts in a clean context, checks four review axes, and uses P0/P1/P2 to bound priority and noise.
+#### `02` Assumptions drift and harden
 
-**🧳 Filling the main conversation with stale implementation detail.** Stable artifacts, result-oriented delegation, and safe Handoff externalize state so the main agent can preserve context for continuous judgment, conflict resolution, and final synthesis.
+**Failure mode** — A guess from investigation enters the Plan, then becomes a “fact” during Execute.<br>
+**Rail** — Keep observations, evidence-backed conclusions, and actions separate. Unknowns remain evidence gaps instead of being silently laundered by the workflow.
+
+#### `03` The agent crosses the decision boundary
+
+**Failure mode** — The agent chooses product behavior, scope, cost, safety, or an irreversible risk tradeoff on the user's behalf.<br>
+**Rail** — Leave consequential tradeoffs to the user while the model autonomously handles routine implementation details from evidence and repository conventions.
+
+#### `04` Review loses focus
+
+**Failure mode** — Review misses issues that threaten delivery while repeatedly debating style or low-value suggestions.<br>
+**Rail** — Review only stable artifacts, in a clean context, across four axes; use P0/P1/P2 to control priority and noise.
+
+#### `05` Context accumulates and distorts judgment
+
+**Failure mode** — A long task keeps exploration history and implementation detail in the main conversation until stale context pulls later decisions off course.<br>
+**Rail** — Externalize state through stable artifacts, result-oriented delegation, and safe Handoff, preserving the main agent's context for continuous judgment, conflict resolution, and final synthesis.
 
 The core path is `Fact → Plan → Execute`, with Review crossing it at stable checkpoints. These are logical gates, not document rituals: a low-risk task may need only a few inline facts and plan notes, while complex, long-running, multi-agent, or cross-session work may persist artifacts.
 
