@@ -35,7 +35,7 @@ GroundRail is built for strong foundation models such as Sol, Claude Opus 4.8, a
 
 **Ground** is the traceable evidence beneath a decision. **Rail** is the minimum constraint around stage order, decision ownership, review, and context. Everything between those boundaries—repository comprehension, implementation design, reuse, and routine engineering detail—stays with the model.
 
-### 🛤️ Five common derailments
+### ⭕ Five common derailments
 
 Five failures remain common even when the code itself is strong:
 
