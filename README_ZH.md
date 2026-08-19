@@ -2,7 +2,7 @@
   <img src="./groundrail.svg" width="180" alt="GroundRail logo" />
 </p>
 
-<h1 align="center">GroundRail</h1>
+<h1 align="center">GroundRail Skill</h1>
 
 <p align="center">
   <strong>提供给强能力基模的证据与轻量约束Skill。</strong>
@@ -27,7 +27,7 @@
   <sub>Codex · Claude Code · Agent Skills compatible hosts</sub>
 </p>
 
-## 🚧 为什么是 GroundRail？
+## 🚧 为什么选择 GroundRail？
 
 > 强编码模型通常不再需要类似superpowers这样的“如何写代码”的教程；需要的是一块确认什么为真的可靠Ground Truth，以及几条约束“何时继续、谁来决定、哪些旧上下文不该带入下一次判断”的轻量化轨道条件。
 
