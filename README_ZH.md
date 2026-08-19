@@ -5,7 +5,7 @@
 <h1 align="center">GroundRail</h1>
 
 <p align="center">
-  <strong>给强编码基模的证据地基与轻量护轨。</strong>
+  <strong>提供给强能力基模的证据与轻量约束Skill。</strong>
   <br />
   <sub>约束事实、阶段与决策边界，不接管模型的工程判断。</sub>
 </p>
@@ -29,13 +29,13 @@
 
 ## 🚧 为什么是 GroundRail？
 
-> 强编码模型通常不再需要一份“如何写代码”的教程。它们需要的，是一块确认什么为真的可靠地基，以及几根约束“何时继续、谁来决定、哪些旧上下文不该带入下一次判断”的轻量护轨。
+> 强编码模型通常不再需要类似superpowers这样的“如何写代码”的教程；需要的是一块确认什么为真的可靠Ground Truth，以及几条约束“何时继续、谁来决定、哪些旧上下文不该带入下一次判断”的轻量化轨道条件。
 
 GroundRail 面向 Sol、Claude Opus 4.8、GLM-5.3 等已经内化了大量编码流程的强基模。它不重新教授仓库阅读、任务拆解、测试或实现，也不用一份巨细无遗的操作手册代替模型判断。
 
-**Ground** 是支撑决策的可追溯证据。**Rail** 是围绕阶段顺序、决策归属、审查和上下文的最少约束。在这些边界之间，仓库理解、实现设计、代码复用和普通工程细节仍由模型决定。
+**Ground** 是支撑决策的可追溯Ground Truth。**Rail** 是围绕阶段顺序、决策归属、审查和上下文的最少约束。在这些边界之间，仓库理解、实现设计、代码复用和普通工程细节仍由模型决定。
 
-### ⭕ 五种常见脱轨
+### ⭕ 五种常见模型脱轨
 
 即使代码能力已经很强，以下五种失败仍然常见：
 
@@ -61,23 +61,23 @@ Fact → Review → Plan → Review → user approval → Execute → Review
 
 这是一条随风险收缩的路径，不是文档生产线。低风险任务可以内联 Fact 和 Plan；复杂、长时、跨 Agent 或跨会话任务才需要把它们保存为稳定工件。
 
-### 1. Fact — 建立事实地基
+### 1. Fact
 
 搜集与风险匹配的最小充分证据。重要观察保持可追溯，否定结果写明搜索边界，未知继续作为证据缺口，而不是被补成看似合理的答案。
 
-### 2. Plan — 把证据变成最小连贯改动
+### 2. Plan
 
 分开证据支持的结论与待验证假设，识别可复用的现有实现，并定义聚焦验证。产品行为、范围、成本、安全和不可逆取舍留给用户；普通工程选择交给模型。
 
-### 3. Execute — 只在授权边界内行动
+### 3. Execute
 
 实施从已审查且获授权的 Plan 开始。模型可以自主编码、验证和简化触达区域，但不扩大范围。实质新事实会重新打开 Fact；重大方案变化会重新打开 Plan 和授权。
 
-### 4. Review — 对抗性检查稳定工件
+### 4. Review
 
 干净上下文 Reviewer 沿 Contract / Intent、Correctness / Safety、Repository Shape / Code health 和 Verification 四个轴检查。`P0` 阻塞，`P1` 标记重要缺陷或遗漏，`P2` 最多保留三项低影响改进。Reviewer 提供证据，主 Agent 负责仲裁。
 
-### 5. Handoff — 外置状态，不复制整段对话
+### 5. Handoff
 
 主 Agent 保留判断和最终综合，边界清楚的重活可以委派。跨会话 Handoff 引用已有计划、diff、commit 和研究工件，而不重复其内容，让下一段上下文继续用于决策，而不是承载旧实现历史。
 
@@ -95,7 +95,7 @@ npx skills add PeterLeeXX/GroundRail --skill groundrail -a codex -a claude-code 
 
 ### 推荐：同时安装到 Codex 和 Claude Code
 
-先确保两个宿主的用户级 Skill 目录存在，再使用 [Skills CLI](https://github.com/vercel-labs/skills) 安装：
+先确保两个Agent的用户 Skill 目录存在，再使用 [Skills CLI](https://github.com/vercel-labs/skills) 安装：
 
 ```bash
 mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills"
@@ -108,20 +108,20 @@ npx skills add PeterLeeXX/GroundRail \
   --yes
 ```
 
-只安装一个宿主时：
+只安装一个Agent时：
 
 ```bash
 npx skills add PeterLeeXX/GroundRail --skill groundrail --agent codex --global --copy --yes
 npx skills add PeterLeeXX/GroundRail --skill groundrail --agent claude-code --global --copy --yes
 ```
 
-安装后检查两个宿主的识别状态：
+安装后检查两个Agent的识别状态：
 
 ```bash
 npx skills list --global --agent codex --agent claude-code
 ```
 
-如果 CLI 显示 `Agents: not linked`，或宿主中看不到 GroundRail，请使用下面的原生目录安装。这样也能避开不同 CLI 版本的链接差异。
+如果 CLI 显示 `Agents: not linked`，或Agent中看不到 GroundRail，请使用下面的原生目录安装。
 
 ### 原生目录安装
 
@@ -199,15 +199,15 @@ GroundRail 最适合“能力已经足够，边界仍会漂移”的场景：
 
 [Superpowers](https://github.com/obra/superpowers) 与 GroundRail 回答的，是可靠 Agent 开发中两个不同的问题：
 
-> **Superpowers 问**：如何让 Agent 遵循一套可靠的开发方法？
+> **Superpowers 聚焦**：如何让 Agent 遵循一套可靠的开发方法？
 >
-> **GroundRail 问**：当模型已经掌握方法，还有哪些边界必须被保护？
+> **GroundRail 聚焦**：当模型已经掌握方法，还有哪些边界必须被保护？
 
-### 🧠 能力已经变了
+### 🧠 强模型后训练对编程流程已经内化
 
-**当模型还需要更多流程支持时，把方法写进指令**。Superpowers 提供完整方法论：brainstorming、worktree、高度细化的计划、严格 red-green-refactor TDD、任务级实施与审查，以及分支收尾。
-
-**当下最强的模型更需要保护判断**。它们已经能够调查陌生仓库、选择实现、复用抽象、针对关键行为验证并修正方案。把这些能力重新写成常驻的逐步指令，会消耗上下文，也会让有价值的判断退化为流程遵循。
+> **当模型能力不足，需要更多流程支持时，把方法写进指令**。Superpowers 提供完整方法论：brainstorming、worktree、高度细化的计划、严格 red-green-refactor TDD、任务级实施与审查，以及分支收尾。
+>
+> **当下最强的模型更需要保护判断**。它们已经能够调查陌生仓库、选择实现、复用抽象、针对关键行为验证并修正方案。把这些能力重新写成常驻的逐步指令，会消耗上下文，也会让有价值的判断退化为流程遵循。
 
 ### 🔀 实际改变了什么
 
