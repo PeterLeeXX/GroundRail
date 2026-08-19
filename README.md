@@ -2,7 +2,7 @@
   <img src="./groundrail.svg" width="180" alt="GroundRail logo" />
 </p>
 
-<h1 align="center">GroundRail.Skill</h1>
+<h1 align="center">GroundRail Skill</h1>
 
 <p align="center">
   <strong>An evidence ground and lightweight rails for strong coding models.</strong>
